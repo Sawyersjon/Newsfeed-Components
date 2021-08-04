@@ -102,6 +102,14 @@ function articleMaker({title, date, firstParagraph, secondParagraph, thirdParagr
   const pThreeElem = document.createElement('p')
   const spanElem = document.createElement('span');
 
+  titleElem.textContent = title;
+  dateElem.textContent = date;
+  pOneElem.textContent = firstParagraph;
+  pTwoElem.textContent = secondParagraph;
+  pThreeElem.textContent = thirdParagraph;
+  spanElem.textContent = '+';
+
+
 
   articleElem.classList.add('article')
   dateElem.classList.add('date')
@@ -122,10 +130,7 @@ function articleMaker({title, date, firstParagraph, secondParagraph, thirdParagr
 }
 
 data.forEach(article => {
-  const newArticle = articleMaker(article)
-  article.appendChild(newArticle)
-
-  article.appendChild(articleMaker(article))
+  document.body.appendChild(articleMaker(data))
 })
 
   // <div class="article">
