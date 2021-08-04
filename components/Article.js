@@ -93,45 +93,51 @@ const data = [
   // Step 1: Write a component called 'articleMaker' to create an article.
   // Your component is a function that takes an article object as its only argument,
   // and returns a DOM node looking like the one below:
-function articleMaker({title, date, firstParagraph, secondParagraph, thirdParagraph}){
-  const articleElem = document.createElement('div');
-  const titleElem = document.createElement('h2');
-  const dateElem = document.createElement('p')
-  const pOneElem = document.createElement('p');
-  const pTwoElem = document.createElement('p');
-  const pThreeElem = document.createElement('p')
-  const spanElem = document.createElement('span');
 
-  titleElem.textContent = title;
-  dateElem.textContent = date;
-  pOneElem.textContent = firstParagraph;
-  pTwoElem.textContent = secondParagraph;
-  pThreeElem.textContent = thirdParagraph;
-  spanElem.textContent = '+';
+const articles = document.querySelector('.articles')
 
+function articleMaker ( {title, date, firstParagraph, secondParagraph, thirdParagraph} ){
 
+  const container = document.createElement('div');
+  const titleCon = document.createElement('h2');
+  const dateCon = document.createElement('p');
+  const onePara = document.createElement('p');
+  const twoPara = document.createElement('p');
+  const threePara = document.createElement('p');
+  const spanCon = document.createElement('span');
 
-  articleElem.classList.add('article')
-  dateElem.classList.add('date')
-  spanElem.classList.add('expandButton')
+  container.classList.add('article');
+  dateCon.classList.add('date');
+  spanCon.classList.add('expandButton');
 
-  titleElem.appendChild(articleElem);
-  dateElem.appendChild(articleElem);
-  pOneElem.appendChild(articleElem);
-  pTwoElem.appendChild(articleElem);
-  pThreeElem.appendChild(articleElem);
-  spanElem.appendChild(articleElem);
-  
+  titleCon.textContent = title;
+  dateCon.textContent = date;
+  spanCon.textContent = '+';
+  onePara.textContent = firstParagraph;
+  twoPara.textContent = secondParagraph;
+  threePara.textContent = thirdParagraph;
 
-  articleElem.addEventListener('click', event => {
-    articleElem.classList.toggle('article-open')
+  titleCon.appendChild(container);
+  dateCon.appendChild(container);
+  onePara.appendChild(container);
+  twoPara.appendChild(container);
+  threePara.appendChild(container);
+  spanCon.appendChild(container);
+
+  container.addEventListener('click', event => {
+    container.classList.toggle('article-open')
   })
-  return articleElem
+  return container;
 }
 
-data.forEach(article => {
-  document.body.appendChild(articleMaker(data))
+const newArray = data.map(container => {
+  return articleMaker(container);
 })
+
+newArray.forEach(container => {
+  articles.appendChild(container);
+})
+
 
   // <div class="article">
   //   <h2>{title of the article}</h2>
